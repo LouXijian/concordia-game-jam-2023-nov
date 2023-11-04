@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
     public float MoveSpeed = 5f;
     public float JumpForce = 7f;
     public Animator animator;
-
+    public float GridSize = 0.01f; // Size of one grid cell
     private Rigidbody m_RigidBody;
     private bool m_GroundedFlag;
+    private int coinsCollected = 0;
     
     public delegate void PlayerMoveHandler();
     public event PlayerMoveHandler OnPlayerMove;
@@ -22,16 +23,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Check for ground
-        CheckGroundStatus();
-
         // Move the player left or right
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(-horizontalInput, 0f, -verticalInput) * MoveSpeed;
-        m_RigidBody.MovePosition(transform.position + movement * Time.deltaTime);
-
+        // Vector3 movement = new Vector3(-horizontalInput, 0f, -verticalInput) * MoveSpeed;
+        // m_RigidBody.MovePosition(transform.position + movement * Time.deltaTime);
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            // Calculate the discrete movement
+            Vector3 moveDirection = new Vector3(-horizontalInput, 0, -verticalInput).normalized;
+            Vector3 moveAmount = moveDirection * GridSize;
+            m_RigidBody.MovePosition(transform.position + moveAmount * Time.deltaTime);
+        }
+        
         // Player Jump
         if (Input.GetButtonDown("Jump") && m_GroundedFlag)
         {
@@ -55,19 +59,31 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Assume everything we collide with is the ground
-        m_GroundedFlag = true;
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            // We collide with is the ground
+            m_GroundedFlag = true;
+        }
+        if (collision.gameObject.CompareTag("coin"))
+        {
+            animator.SetTrigger("Picking");
+            // Deactivate the coin GameObject
+            collision.gameObject.SetActive(false);
+
+            // Increment the coins collected count
+            coinsCollected++;
+
+            // Print out the number of coins collected
+            Debug.Log("Coins Collected: " + coinsCollected);
+        }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        // When not colliding, we are in the air (not grounded)
-        m_GroundedFlag = false;
-    }
-
-    void CheckGroundStatus()
-    {
-        // Here you can add additional logic to check if the player is actually grounded,
-        // to prevent jumping while in the air. This could be done using Raycast.
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            // When not colliding, we are in the air (not grounded)
+            m_GroundedFlag = false;
+        }
     }
 }
