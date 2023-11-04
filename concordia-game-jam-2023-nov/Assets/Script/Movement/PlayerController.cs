@@ -7,17 +7,30 @@ public class PlayerController : MonoBehaviour
     public float MoveSpeed = 5f;
     public float JumpForce = 7f;
     public Animator animator;
+    public AudioClip footstepSound;
 
     private Rigidbody m_RigidBody;
     private bool m_GroundedFlag;
+    private AudioSource footStep;
+    private float footstepRate = 0.5f;
     
     public delegate void PlayerMoveHandler();
     public event PlayerMoveHandler OnPlayerMove;
+    private float nextFootstepTime = 0f;
 
     void Start()
     {
         // Get the Rigidbody component from the player GameObject.
         m_RigidBody = GetComponent<Rigidbody>();
+
+        footStep = GetComponent<AudioSource>();
+        if (footStep == null) {
+            footStep = gameObject.AddComponent<AudioSource>();
+        }
+        // Configure the AudioSource for footsteps (if necessary)
+        footStep.playOnAwake = false;
+        footStep.loop = false;
+        footStep.volume = 0.3f;
     }
 
     void Update()
@@ -50,7 +63,12 @@ public class PlayerController : MonoBehaviour
         {
             OnPlayerMove?.Invoke();
         }
-        
+          if (movement.magnitude > 0 && m_GroundedFlag && Time.time >= nextFootstepTime)
+        {
+            m_RigidBody.MovePosition(transform.position + movement * Time.deltaTime);
+            PlayFootstepSound();
+            OnPlayerMove?.Invoke();
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -70,4 +88,17 @@ public class PlayerController : MonoBehaviour
         // Here you can add additional logic to check if the player is actually grounded,
         // to prevent jumping while in the air. This could be done using Raycast.
     }
+
+       private void PlayFootstepSound()
+    {
+        if (!footStep.isPlaying)
+        {
+            footStep.clip = footstepSound;
+            footStep.Play();
+            nextFootstepTime = Time.time + footstepRate; // Set the time for the next footstep
+        }
+    }
+
+
+
 }
