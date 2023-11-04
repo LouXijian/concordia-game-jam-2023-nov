@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class Slumber : MonoBehaviour
 {
@@ -10,12 +9,14 @@ public class Slumber : MonoBehaviour
     public int SlumberLevelDamage = 5;
     public PlayerController Player;
     
+    private float pulseInterval = 2f; // You should set this to the interval of your heartbeat sounds.
+
     void Start()
     {
         Player.OnPlayerMove += WakeningMonster;
         SlumberLevel = SlumberLevelMax;
     }
-    
+
     public void WakeningMonster()
     {
         if (!Sound.DetectPulse())
@@ -26,6 +27,7 @@ public class Slumber : MonoBehaviour
             {
                 Debug.Log("The monster is waking up!");
             }
+
             if (SlumberLevel <= 0)
             {
                 Debug.Log("Ouch! You woke up the monster!");
