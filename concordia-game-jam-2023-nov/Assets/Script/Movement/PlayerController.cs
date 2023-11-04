@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -5,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 5f;
     public float JumpForce = 7f;
+    public Animator animator;
 
     private Rigidbody m_RigidBody;
     private bool m_GroundedFlag;
@@ -34,12 +36,21 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && m_GroundedFlag)
         {
             m_RigidBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            animator.SetTrigger("Jumping");
         }
-        
+        else if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
+            animator.SetTrigger("Walking");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
         if (Input.GetButtonDown("Jump")|| Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
             OnPlayerMove?.Invoke();
         }
+        
     }
 
     void OnCollisionEnter(Collision collision)
