@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * MoveSpeed;
+        Vector3 movement = new Vector3(-horizontalInput, 0f, -verticalInput) * MoveSpeed;
         m_RigidBody.MovePosition(transform.position + movement * Time.deltaTime);
 
         // Player Jump
