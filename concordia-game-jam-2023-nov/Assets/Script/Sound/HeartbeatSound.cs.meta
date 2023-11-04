@@ -3,7 +3,9 @@ guid: 9a73c247f1b0ae34c89b3881a8207e86
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - HeartbeatClip: {fileID: 8300000, guid: 0200528db41b943a9956829eaadece50, type: 3}
+  - Player: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
