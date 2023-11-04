@@ -877,7 +877,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 444a08cce147c496f9307166fb5f8c81, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.231
   m_Pitch: 0.3
   Loop: 0
   Mute: 0
@@ -4127,7 +4127,7 @@ GameObject:
   - component: {fileID: 1822686466}
   - component: {fileID: 1822686468}
   m_Layer: 0
-  m_Name: Sound
+  m_Name: HeartbeatSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4147,7 +4147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioSource: {fileID: 1822686468}
   PulseList: []
-  PulseInterval: 2
+  PulseInterval: 3
   MusicLength: 100
   RandomLevel: 0.5
 --- !u!4 &1822686467
@@ -4177,7 +4177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0200528db41b943a9956829eaadece50, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.301
+  m_Volume: 0.931
   m_Pitch: 1.37
   Loop: 0
   Mute: 0
