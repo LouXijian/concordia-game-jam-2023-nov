@@ -1,17 +1,21 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 7f;
+    public float MoveSpeed = 5f;
+    public float JumpForce = 7f;
 
-    private Rigidbody rb;
-    private bool isGrounded;
+    private Rigidbody m_RigidBody;
+    private bool m_GroundedFlag;
+    
+    public delegate void PlayerMoveHandler();
+    public event PlayerMoveHandler OnPlayerMove;
 
     void Start()
     {
         // Get the Rigidbody component from the player GameObject.
-        rb = GetComponent<Rigidbody>();
+        m_RigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -23,26 +27,31 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed;
-        rb.MovePosition(transform.position + movement * Time.deltaTime);
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * MoveSpeed;
+        m_RigidBody.MovePosition(transform.position + movement * Time.deltaTime);
 
         // Player Jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && m_GroundedFlag)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            m_RigidBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        }
+        
+        if (Input.GetButtonDown("Jump")|| Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
+            OnPlayerMove?.Invoke();
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
         // Assume everything we collide with is the ground
-        isGrounded = true;
+        m_GroundedFlag = true;
     }
 
     void OnCollisionExit(Collision collision)
     {
         // When not colliding, we are in the air (not grounded)
-        isGrounded = false;
+        m_GroundedFlag = false;
     }
 
     void CheckGroundStatus()
