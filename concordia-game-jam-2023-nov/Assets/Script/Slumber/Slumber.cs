@@ -9,9 +9,11 @@ public class Slumber : MonoBehaviour
     public HeartbeatSound Sound;
     public int SlumberLevelDamage = 5;
     public PlayerController Player;
-    
+    private Animator animator;
+
     void Start()
-    {
+    { 
+        animator = GetComponent<Animator>(); 
         Player.OnPlayerMove += WakeningMonster;
         SlumberLevel = SlumberLevelMax;
     }
@@ -22,13 +24,17 @@ public class Slumber : MonoBehaviour
         {
             Debug.Log("Your step is heard!");
             SlumberLevel -= SlumberLevelDamage;
+
             if (SlumberLevel <= 60)
             {
                 Debug.Log("The monster is waking up!");
+                animator.SetTrigger("ClosedToHalfOpen"); // trigger for blink1
+
             }
             if (SlumberLevel <= 0)
             {
                 Debug.Log("Ouch! You woke up the monster!");
+                animator.SetTrigger("HalfOpenToOpen"); // trigger for blink2
             }
         }
     }
