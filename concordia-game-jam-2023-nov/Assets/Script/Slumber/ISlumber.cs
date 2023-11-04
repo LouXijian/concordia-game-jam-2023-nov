@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ISlumber : MonoBehaviour
+public abstract class ISlumber 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int SlumberLevel;
+    public int SlumberLevelMax = 100;
+    public ISound Sound;
+    public int SlumberLevelDamage = 5;
 }
