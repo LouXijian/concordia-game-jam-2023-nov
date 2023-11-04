@@ -1,31 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class HeartbeatSound : MonoBehaviour
 {
+    public AudioSource AudioSource;
+
     [HideInInspector]
     public List<float> PulseList;
-    public float PulseInterfal = 0.5f;
-    public float MusicLength = 100f;
-    public float RandomLevel = 0.5f;
+    public float PulseInterval;
+    public float MusicLength;
+    public float RandomLevel;
+    
     private float m_HeartBeatStartTime;
     private float m_CushionTime = 0.1f;
 
     void Start()
     {
-        for (int i = 0; i * PulseInterfal < MusicLength; i++)
+        PulseList = new List<float>();
+        PulseList.Add(0); // First pulse at time 0
+        for (int i = 1; i * PulseInterval < MusicLength; i++)
         {
-            PulseList.Add(i * PulseInterfal);
+            PulseList.Add(i * PulseInterval);
             if (Random.Range(0f, 1f) > RandomLevel)
             {
                 PulseList.Add(Random.Range(0f, MusicLength));
             }
         }
+
+        PulseList.Sort();
+
         m_HeartBeatStartTime = Time.time;
+    }
+
+    void Update()
+    {
+        if (DetectPulse())
+        {
+            AudioSource.Play();
+        }
     }
 
     public bool DetectPulse()

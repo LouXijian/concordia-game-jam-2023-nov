@@ -1,4 +1,3 @@
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,11 +5,13 @@ public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 5f;
     public float JumpForce = 7f;
-    public Animator animator;
+    public Animator Animator;
+    public AudioSource FootStep;
+    public HeartbeatSound Heartbeat;
 
     private Rigidbody m_RigidBody;
     private bool m_GroundedFlag;
-    
+
     public delegate void PlayerMoveHandler();
     public event PlayerMoveHandler OnPlayerMove;
 
@@ -18,13 +19,14 @@ public class PlayerController : MonoBehaviour
     {
         // Get the Rigidbody component from the player GameObject.
         m_RigidBody = GetComponent<Rigidbody>();
+
+        if (FootStep == null)
+            FootStep = gameObject.AddComponent<AudioSource>();
+        FootStep = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        // Check for ground
-        CheckGroundStatus();
-
         // Move the player left or right
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -36,21 +38,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && m_GroundedFlag)
         {
             m_RigidBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-            animator.SetTrigger("Jumping");
+            Animator.SetTrigger("Jumping");
         }
         else if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
-            animator.SetTrigger("Walking");
+            Animator.SetTrigger("Walking");
         }
         else
         {
-            animator.SetTrigger("Idle");
+            Animator.SetTrigger("Idle");
         }
         if (Input.GetButtonDown("Jump")|| Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
-            OnPlayerMove?.Invoke();
+            OnPlayerMove?.Invoke();         
+            if (!Heartbeat.DetectPulse())
+                PlayFootstepSound();
         }
-        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -64,10 +67,9 @@ public class PlayerController : MonoBehaviour
         // When not colliding, we are in the air (not grounded)
         m_GroundedFlag = false;
     }
-
-    void CheckGroundStatus()
-    {
-        // Here you can add additional logic to check if the player is actually grounded,
-        // to prevent jumping while in the air. This could be done using Raycast.
+    
+    private void PlayFootstepSound()
+    {   
+        FootStep.Play();
     }
 }
