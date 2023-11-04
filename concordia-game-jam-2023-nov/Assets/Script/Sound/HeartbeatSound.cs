@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class HeartBeat : MonoBehaviour
+public class HeartbeatSound : MonoBehaviour
 {
+    [HideInInspector]
     public List<float> PulseList;
     public float PulseInterfal = 0.5f;
     public float MusicLength = 100f;
     public float RandomLevel = 0.5f;
-    private readonly float m_HeartBeatStartTime = Time.time;
+    private float m_HeartBeatStartTime;
 
-    public HeartBeat()
+    void Start()
     {
         for (int i = 0; i * PulseInterfal < MusicLength; i++)
         {
@@ -21,6 +22,7 @@ public class HeartBeat : MonoBehaviour
                 PulseList.Add(Random.Range(0f, MusicLength));
             }
         }
+        m_HeartBeatStartTime = Time.time;
     }
 
     public bool DetectPulse()
