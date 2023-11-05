@@ -4,9 +4,9 @@ using UnityEngine;
 public class SpriteManager : MonoBehaviour
 {
     public List<SpriteInfo> SpriteList = new ();
-    private Dictionary<string, Sprite> spriteDictionary = new ();
+    public Dictionary<string, Sprite> spriteDictionary = new ();
 
-    public void Start()
+    void Start()
     {
         foreach (var spriteInfo in SpriteList)
         {
@@ -16,6 +16,10 @@ public class SpriteManager : MonoBehaviour
 
     public Sprite GetSprite(string spriteName)
     {
+        if (spriteDictionary.Count == 0)
+        {
+            Start();
+        }
         if (spriteDictionary.TryGetValue(spriteName, out var sprite))
         {
             return sprite;
