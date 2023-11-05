@@ -12,6 +12,6 @@ public class GameOverController : MonoBehaviour
         if (win)
             gameOverText.text = "Fortune is collected in its slumber. \nYou win!";
         else
-            gameOverText.text = "Game Over. \nThe monster wakes up.";
+            gameOverText.text = "Game Over. \nYou woke up the monster!!";
     }
 }
