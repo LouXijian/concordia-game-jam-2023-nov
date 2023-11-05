@@ -79,7 +79,18 @@ public class PlayerController : MonoBehaviour
             // Increment the coins collected count
             coinsCollected++;
 
-            if (coinsCollected == 6)
+            GameObject[] coins = GameObject.FindGameObjectsWithTag("coin");
+            int activeCoinCount = 0;
+            
+            // Iterate through all coins and count the active ones
+            foreach (GameObject coin in coins)
+            {
+                if (coin.activeSelf)
+                {
+                    activeCoinCount++;
+                }
+            }
+            if (activeCoinCount == 0)
             {
                 GameOverController.ShowGameOver(true);  // true indicates a win
                 enabled = false;
