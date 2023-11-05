@@ -244,7 +244,7 @@ Transform:
   - {fileID: 99229833}
   - {fileID: 1822686467}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &19523087
 Animator:
@@ -456,8 +456,9 @@ Transform:
   - {fileID: 1490118663}
   - {fileID: 304041993}
   - {fileID: 404326484}
+  - {fileID: 1675740055}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &94771575
 PrefabInstance:
@@ -2685,7 +2686,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &711610678 stripped
 GameObject:
@@ -3402,7 +3403,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 34.964, y: -150.691, z: 0.194}
 --- !u!1 &964249373 stripped
 GameObject:
@@ -3582,7 +3583,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022553923 stripped
 GameObject:
@@ -3634,7 +3635,7 @@ Transform:
   m_Children:
   - {fileID: 1177900841}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1113228748
 PrefabInstance:
@@ -3646,6 +3647,10 @@ PrefabInstance:
     - target: {fileID: 3512318471773743789, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_Name
       value: Coins (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3901,6 +3906,10 @@ PrefabInstance:
       value: Coins (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.167
       objectReference: {fileID: 0}
@@ -3957,6 +3966,10 @@ PrefabInstance:
     - target: {fileID: 3512318471773743789, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_Name
       value: Coins (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4677,6 +4690,10 @@ PrefabInstance:
       value: Coins (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.133
       objectReference: {fileID: 0}
@@ -5393,8 +5410,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675740054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29305077, y: 0.41059077, z: 2.5212717}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3332478, y: 0.3280908, z: 2.3163521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5404,8 +5421,8 @@ Transform:
   - {fileID: 1167466225}
   - {fileID: 1400149432}
   - {fileID: 1704096233}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 52681918}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681446987 stripped
 GameObject:
@@ -5555,6 +5572,10 @@ PrefabInstance:
     - target: {fileID: 3512318471773743789, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_Name
       value: Coins (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4320521759153303575, guid: 9e6d3fd97d296487d8ccdd1a2a299792, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6615,7 +6636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 445f469be63294f70ba6479bbfa4b6be, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 445f469be63294f70ba6479bbfa4b6be, type: 3}
       propertyPath: m_LocalScale.x
