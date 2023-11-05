@@ -8,13 +8,14 @@ public class PlayerController : MonoBehaviour
     public Animator Animator;
     public AudioSource FootStep;
     public HeartbeatSound Heartbeat;
-    private Rigidbody m_RigidBody;
-    private bool m_GroundedFlag;
-    private int coinsCollected = 0;
-    public float GridSize = 1f;
     public delegate void PlayerMoveHandler();
     public event PlayerMoveHandler OnPlayerMove;
-    public GameOverController gameOverController; // add component for creation of gameOverScreen
+    public GameOverController GameOverController; 
+    
+    Rigidbody m_RigidBody;
+    bool m_GroundedFlag;
+    int coinsCollected = 0;
+    float m_GridSize = 0.03f;
 
     void Start()
     {
@@ -37,8 +38,8 @@ public class PlayerController : MonoBehaviour
         {
             // Calculate the discrete movement
             Vector3 moveDirection = new Vector3(-horizontalInput, 0, -verticalInput).normalized;
-            Vector3 moveAmount = moveDirection * GridSize;
-            m_RigidBody.MovePosition(transform.position + moveAmount * Time.deltaTime);
+            Vector3 moveAmount = moveDirection * m_GridSize;
+            m_RigidBody.MovePosition(transform.position + moveAmount);
         }
 
         // Player Jump
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
             if (coinsCollected == 6)
             {
-                gameOverController.ShowGameOver(true);  // true indicates a win
+                GameOverController.ShowGameOver(true);  // true indicates a win
                 enabled = false;
             }
 
