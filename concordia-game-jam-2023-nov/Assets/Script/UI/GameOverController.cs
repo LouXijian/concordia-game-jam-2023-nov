@@ -5,6 +5,7 @@ public class GameOverController : MonoBehaviour
 {
     public GameObject gameOverPanel; // Assign a UI Panel from the scene to this
     public Text gameOverText; // Assign a UI Text inside the panel to display messages
+    public AudioSource monsterRoar;
 
     public void ShowGameOver(bool win)
     {
@@ -13,5 +14,18 @@ public class GameOverController : MonoBehaviour
             gameOverText.text = "Fortune is collected in its slumber. \nYou win!";
         else
             gameOverText.text = "Game Over. \nThe monster wakes up.";
+            PlayMonsterRoar();
     }
+
+       private void PlayMonsterRoar()
+    {
+        if (monsterRoar != null)
+        {
+            monsterRoar.Play();
+        }
+    }
+
+
+
+
 }
