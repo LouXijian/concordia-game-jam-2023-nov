@@ -9,14 +9,15 @@ public class Slumber : MonoBehaviour
     public int SlumberLevelDamage = 5;
     public PlayerController Player;
     private Animator m_Animator;
-    
+    //public GameObject GameOverPanel;
+
     private float m_PulseInterval = 2f; // You should set this to the interval of your heartbeat sounds.
 
     void Start()
     {
         Player.OnPlayerMove += WakeningMonster;
         SlumberLevel = SlumberLevelMax;
-        m_Animator = GetComponent<Animator>();
+        m_Animator = GetComponent<Animator>(); // Initialize the reference
     }
 
     public void WakeningMonster()
@@ -29,12 +30,15 @@ public class Slumber : MonoBehaviour
             {
                 m_Animator.SetTrigger("ClosedToHalfOpen");
                 Debug.Log("The monster is waking up!");
+
             }
 
             if (SlumberLevel <= 0)
             {
                 m_Animator.SetTrigger("HalfOpenToOpen");
                 Debug.Log("Ouch! You woke up the monster!");
+                // game over when the monster wakes up
+                GameOverPanel.ShowGameOver(false);
             }
         }
     }

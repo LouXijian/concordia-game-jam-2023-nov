@@ -14,11 +14,14 @@ public class PlayerController : MonoBehaviour
     public float GridSize = 1f;
     public delegate void PlayerMoveHandler();
     public event PlayerMoveHandler OnPlayerMove;
+    public GameOverController GameOverPanel;
 
     void Start()
     {
         // Get the Rigidbody component from the player GameObject.
         m_RigidBody = GetComponent<Rigidbody>();
+
+        //gameOverController = FindObjectOfType<GameOverController>();  // Initialize the reference
 
         if (FootStep == null)
             FootStep = gameObject.AddComponent<AudioSource>();
@@ -76,6 +79,12 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
             // Increment the coins collected count
             coinsCollected++;
+            if (coinsCollected == 6)
+            {
+                // If all coins are collected
+                GameOverPanel.ShowGameOver(true);
+            }
+
 
             // Print out the number of coins collected
             Debug.Log("Coins Collected: " + coinsCollected);
