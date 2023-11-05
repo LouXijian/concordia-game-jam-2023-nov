@@ -9,8 +9,6 @@ public class Slumber : MonoBehaviour
     public int SlumberLevelDamage = 5;
     public PlayerController Player;
     private Animator m_Animator;
-    
-    private float m_PulseInterval = 2f; // You should set this to the interval of your heartbeat sounds.
 
     void Start()
     {
@@ -21,11 +19,11 @@ public class Slumber : MonoBehaviour
 
     public void WakeningMonster()
     {
-        if (!Sound.DetectPulse())
+        if (!Sound.PlayerDetectPulse())
         {
             Debug.Log("Your step is heard!");
             SlumberLevel -= SlumberLevelDamage;
-            if (SlumberLevel <= 60)
+            if (SlumberLevel <= 40)
             {
                 m_Animator.SetTrigger("ClosedToHalfOpen");
                 Debug.Log("The monster is waking up!");
