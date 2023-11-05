@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody m_RigidBody;
     private bool m_GroundedFlag;
     private int coinsCollected = 0;
-    public float GridSize = 0.01f;
+    public float GridSize = 1f;
     public delegate void PlayerMoveHandler();
     public event PlayerMoveHandler OnPlayerMove;
 
