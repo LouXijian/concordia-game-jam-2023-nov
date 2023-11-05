@@ -18,8 +18,6 @@ public class OpeningScreen : MonoBehaviour
     void LoadFirstScene()
     {
         SceneManager.UnloadScene(SceneManager.GetActiveScene());
-        
-        // Load a new scene named "NewScene"
         SceneManager.LoadScene("Level 1");
     }
 }
