@@ -4,18 +4,20 @@ using UnityEngine.Serialization;
 
 public class Slumber : MonoBehaviour
 {
-    public int SlumberLevel;
     public int SlumberLevelMax = 100;
+    public int SlumberLevel = 100;
     public HeartbeatSound Sound;
     public int SlumberLevelDamage = 5;
     public PlayerController Player;
     public GameOverController GameOverController; // add new component for craetion of gameOverScreen
     private Animator m_Animator;
+    
+    public delegate void SlumberValueChangeHandler();
+    public event SlumberValueChangeHandler SlumberValueChange;
 
     void Start()
     {
         Player.OnPlayerMove += WakeningMonster;
-        SlumberLevel = SlumberLevelMax;
         m_Animator = GetComponent<Animator>();
     }
 
@@ -25,6 +27,7 @@ public class Slumber : MonoBehaviour
         {
             Debug.Log("Your step is heard!");
             SlumberLevel -= SlumberLevelDamage;
+            SlumberValueChange?.Invoke();
             if (SlumberLevel <= 40)
             {
                 m_Animator.SetTrigger("ClosedToHalfOpen");
