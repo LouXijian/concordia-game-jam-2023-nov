@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float GridSize = 1f;
     public delegate void PlayerMoveHandler();
     public event PlayerMoveHandler OnPlayerMove;
+    public GameOverController gameOverController; // add component for creation of gameOverScreen
 
     void Start()
     {
@@ -76,6 +77,12 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
             // Increment the coins collected count
             coinsCollected++;
+
+            if (coinsCollected == 6)
+            {
+                gameOverController.ShowGameOver(true);  // true indicates a win
+
+            }
 
             // Print out the number of coins collected
             Debug.Log("Coins Collected: " + coinsCollected);

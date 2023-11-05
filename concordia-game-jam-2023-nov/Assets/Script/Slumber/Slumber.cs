@@ -8,6 +8,7 @@ public class Slumber : MonoBehaviour
     public HeartbeatSound Sound;
     public int SlumberLevelDamage = 5;
     public PlayerController Player;
+    public GameOverController gameOverController; // add new component for craetion of gameOverScreen
     private Animator m_Animator;
 
     void Start()
@@ -33,6 +34,8 @@ public class Slumber : MonoBehaviour
             {
                 m_Animator.SetTrigger("HalfOpenToOpen");
                 Debug.Log("Ouch! You woke up the monster!");
+                gameOverController.ShowGameOver(false);  // false indicates a loss
+
             }
         }
     }
