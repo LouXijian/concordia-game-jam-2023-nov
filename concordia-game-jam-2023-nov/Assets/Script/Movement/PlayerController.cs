@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             if (coinsCollected == 6)
             {
                 gameOverController.ShowGameOver(true);  // true indicates a win
-
+                enabled = false;
             }
 
             // Print out the number of coins collected

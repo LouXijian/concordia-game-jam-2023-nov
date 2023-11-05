@@ -35,7 +35,7 @@ public class Slumber : MonoBehaviour
                 m_Animator.SetTrigger("HalfOpenToOpen");
                 Debug.Log("Ouch! You woke up the monster!");
                 gameOverController.ShowGameOver(false);  // false indicates a loss
-
+                Player.enabled = false;
             }
         }
     }

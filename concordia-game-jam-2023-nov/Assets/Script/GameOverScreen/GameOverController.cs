@@ -10,8 +10,8 @@ public class GameOverController : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         if (win)
-            gameOverText.text = "Congratulations! You Win!";
+            gameOverText.text = "Fortune is collected in its slumber. \nYou win!";
         else
-            gameOverText.text = "Game Over! The monster woke up!";
+            gameOverText.text = "Game Over. \nThe monster wakes up.";
     }
 }
