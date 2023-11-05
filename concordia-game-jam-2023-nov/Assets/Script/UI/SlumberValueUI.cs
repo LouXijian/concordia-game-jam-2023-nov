@@ -15,10 +15,17 @@ public class SlumberValueUI : MonoBehaviour
     {
         MonsterSlumber.SlumberValueChange += UpdateHPDisplay;
         UpdateHPDisplay();
+
     }
 
     private void UpdateHPDisplay()
     {
+        HeartImageList[4].transform.position = new Vector3(300f, 713f, 0f)*Screen.width/1534f;
+        HeartImageList[3].transform.position = new Vector3(240f, 713f, 0f)*Screen.width/1534f;
+        HeartImageList[2].transform.position = new Vector3(180f, 713f, 0f)*Screen.width/1534f;
+        HeartImageList[1].transform.position = new Vector3(120f, 713f, 0f)*Screen.width/1534f;
+        HeartImageList[0].transform.position = new Vector3(60f, 713f, 0f)*Screen.width/1534f;
+        
         switch (MonsterSlumber.SlumberLevel)
         {
             case(100):
