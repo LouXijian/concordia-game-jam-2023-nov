@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump")|| Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
             OnPlayerMove?.Invoke();         
-            if (!Heartbeat.DetectPulse())
+            if (!Heartbeat.PlayerDetectPulse())
                 PlayFootstepSound();
         }
     }
